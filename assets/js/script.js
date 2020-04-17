@@ -17,7 +17,6 @@ jQuery(document).ready(function($){
         var rest_api = clean_url + '/wp-json/wp/v2/';   // wp_rest_api
 
         // TODO: funksioni qe merr postimet
-        console.log("Post");
         wp_lista_postimeve(rest_api);
     }
     // nese seshte ne rregull linku error
@@ -33,30 +32,35 @@ jQuery(document).ready(function($){
 
     var postimet_url = $rest_api + 'posts/';
 
-    console.log(postimet_url);
     // provo me kontaktu
     $.ajax({
         dataType: 'json',
-        url: $rest_api
+        url: postimet_url
     })
 
     // nese ka sukses
     .done(function(data){
         console.log(data);
+
+        // TODO: Me manipulu html-in ne index
+        
     })
 
     // nese ka deshtu
     .fail(function() {
-        $('.site-header').append('<div class="error">That didn&rsquo;t work. Try a different URL.</div>');
+        // $('.site-header').append('<div class="error">That didn&rsquo;t work. Try a different URL.</div>');
         console.log('ERROR: REST error. Nothing returned for AJAX.');
     })
 
     // gjithmone
     .always(function() {
         $('.nav-loader').remove();
-        console.log("Hello");
-
     })
+}
+
+
+function krijo_listen_cardave(){
+  
 }
 
 })
