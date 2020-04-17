@@ -43,7 +43,7 @@ jQuery(document).ready(function($){
         console.log(data);
 
         // TODO: Me manipulu html-in ne index
-        
+        krijo_listen_cardave(data);
     })
 
     // nese ka deshtu
@@ -59,8 +59,33 @@ jQuery(document).ready(function($){
 }
 
 
-function krijo_listen_cardave(){
-  
+function krijo_listen_cardave(objektet){
+
+  // Zbrase listen me karda
+  $('.card-columns').empty().append('<ul></ul>');
+
+  var karda_re;
+
+  // Per secilin objekt nga postimet
+  for(var i=0; i<objektet.length; i++) {
+
+    // krijoje nje kard
+    karda_re =
+          '<div class="card">' +
+            '<div class="card-body">' +
+              '<div class="card-title">' +
+                '<a href="javascript:void(0)" data-id="' + objektet[i].id + '">' +
+                  objektet[i].title.rendered +
+                '</a>' +
+              '</div>' +
+            '</div>' +
+          '</div>';
+
+      // vendose karden e re tek lista kardave
+      $('.card-columns').append(karda_re);
+  }
+
+
 }
 
 })
