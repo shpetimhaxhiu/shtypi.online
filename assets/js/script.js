@@ -1,1 +1,1 @@
-script.js
+// funksionet qe kena mi zhvillu, etj
