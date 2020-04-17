@@ -1,5 +1,6 @@
 // masi te loadohet jQuery
 jQuery(document).ready(function($){
+  
   // Kur te klikohet ndonje portal-link
   $('.portal-link').on("click", function(e){
     
@@ -69,15 +70,25 @@ function krijo_listen_cardave(objektet){
   // Per secilin objekt nga postimet
   for(var i=0; i<objektet.length; i++) {
 
+    permbajtja = objektet[i].excerpt.rendered;
+
+    koha_publikimit = new Date(objektet[i].date);
+    
+    // TODO: Me rregullu shfaqjen e ores
+
+
     // krijoje nje kard
     karda_re =
           '<div class="card">' +
             '<div class="card-body">' +
-              '<div class="card-title">' +
+              '<h5 class="card-title">' +
                 '<a href="javascript:void(0)" data-id="' + objektet[i].id + '">' +
                   objektet[i].title.rendered +
                 '</a>' +
-              '</div>' +
+              '</h5>' +
+              // '<p class="card-text"><small class="text-muted">Publikuar me: ' + koha_publikimit + '</small></p>'
+              '<div class="card-text"> ' + permbajtja.slice(0, 130) + '...</div>' +
+              '<p class="card-text"><small class="text-muted">Publikuar me: ' + koha_publikimit + '</small></p>'
             '</div>' +
           '</div>';
 
