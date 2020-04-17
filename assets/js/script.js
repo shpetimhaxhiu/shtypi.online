@@ -1,5 +1,3 @@
-// funksionet qe kena mi zhvillu, etj
-
 // masi te loadohet jQuery
 jQuery(document).ready(function($){
   // Kur te klikohet ndonje portal-link
@@ -16,14 +14,50 @@ jQuery(document).ready(function($){
         $('.error').remove();
         var clean_url = (new URL(portal_link)).protocol + '//' + (new URL(portal_link)).hostname;
 
-        rest_api = clean_url + '/wp-json/wp/v2/';   // wp_rest_api
+        var rest_api = clean_url + '/wp-json/wp/v2/';   // wp_rest_api
 
         // TODO: funksioni qe merr postimet
+        console.log("Post");
+        wp_lista_postimeve(rest_api);
     }
     // nese seshte ne rregull linku error
     catch (e) {
         $('.site-header').append('<div class="error">That didn&rsquo;t work. Try a different URL.</div>');
     }
   });
+  // //Kur te klikohet ndonje portal-link
+
+
+
+  function wp_lista_postimeve($rest_api) {
+
+    var postimet_url = $rest_api + 'posts/';
+
+    console.log(postimet_url);
+    // provo me kontaktu
+    $.ajax({
+        dataType: 'json',
+        url: $rest_api
+    })
+
+    // nese ka sukses
+    .done(function(data){
+        console.log(data);
+    })
+
+    // nese ka deshtu
+    .fail(function() {
+        $('.site-header').append('<div class="error">That didn&rsquo;t work. Try a different URL.</div>');
+        console.log('ERROR: REST error. Nothing returned for AJAX.');
+    })
+
+    // gjithmone
+    .always(function() {
+        $('.nav-loader').remove();
+        console.log("Hello");
+
+    })
+}
+
 })
 
